@@ -1,16 +1,19 @@
 from dataclasses import dataclass
 from typing import Protocol
 
+
 class RateProvider(Protocol):
     """Джерело курсів валют: скільки гривень коштує 1 одиниця валюти."""
-    def get_rate(self, currency: str) -> float:
-        ...
+
+    def get_rate(self, currency: str) -> float: ...
+
 
 @dataclass
 class Item:
     name: str
     price: float
     qty: int
+
 
 class Cart:
     def __init__(self) -> None:
@@ -23,6 +26,7 @@ class Cart:
             raise ValueError("qty must be positive")
         if name in self._items:
             self._items[name].qty += qty
+            self._items[name].price = price  # Оновлюємо ціну при повторному додаванні
         else:
             self._items[name] = Item(name, price, qty)
 
@@ -45,3 +49,9 @@ class Cart:
         if rate <= 0:
             raise ValueError("rate must be positive")
         return round(self.total() / rate, 2)
+
+    def most_expensive(self) -> Item | None:
+        """Повертає найдорожчий товар у кошику або None, якщо кошик порожній."""
+        if not self._items:
+            return None
+        return max(self._items.values(), key=lambda item: item.price)
