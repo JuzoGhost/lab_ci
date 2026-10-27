@@ -70,9 +70,6 @@ def test_remove_item(cart_with_items: Cart) -> None:
         (100, 0.0),  # 100% знижка (граничне)
     ],
 )
-#def test_total_with_discount(cart_with_items: Cart, discount: float,
-# expected_total: float) -> None:
-#    assert cart_with_items.total(discount_percent=discount) == pytest.approx(expected_total)
 
 
 # 5. Тест із тестовим дублером (Mock)
