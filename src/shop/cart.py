@@ -57,4 +57,4 @@ class Cart:
         return max(self._items.values(), key=lambda item: item.price)
 
     def format_total(self) -> str:
-        return 10.5  # Навмисна помилка: повертаємо float замість str
+        return str(10.5)
