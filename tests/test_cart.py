@@ -71,7 +71,6 @@ def test_remove_item(cart_with_items: Cart) -> None:
     ],
 )
 
-
 # 5. Тест із тестовим дублером (Mock)
 def test_total_in_currency(cart_with_items: Cart) -> None:
     rates = Mock()
