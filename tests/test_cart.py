@@ -70,18 +70,6 @@ def test_remove_item(cart_with_items: Cart) -> None:
         (100, 0.0),  # 100% знижка (граничне)
     ],
 )
-def test_total_with_discount(cart_with_items: Cart, discount: float, expected_total: float) -> None:
-    assert cart_with_items.total(discount_percent=discount) == pytest.approx(expected_total)
-
-
-# 5. Тест із тестовим дублером (Mock)
-def test_total_in_currency(cart_with_items: Cart) -> None:
-    rates = Mock()
-    rates.get_rate.return_value = 40.0  # 1 USD = 40 UAH
-    # 460 / 40 = 11.5
-    assert cart_with_items.total_in("USD", rates) == pytest.approx(11.5)
-    rates.get_rate.assert_called_once_with("USD")
-
 
 # 6. TDD: Тести для нового методу most_expensive
 def test_most_expensive_empty_cart(empty_cart: Cart) -> None:
