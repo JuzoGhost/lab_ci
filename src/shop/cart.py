@@ -59,7 +59,6 @@ class Cart:
     def format_total(self) -> str:
         return str(10.5)
 
-    def apply_quick_discount(self, p):
-        # Незрозуміла назва змінної 'p', відсутність анотацій типів і немає тесту
+    def apply_quick_discount(self, p: float) -> float:
         val = p * 0.15
-        return self.total - val
+        return self.total() - val
